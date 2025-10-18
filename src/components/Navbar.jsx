@@ -34,7 +34,7 @@ const Navbar = () => {
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Vâng, xóa tất cả!",
+      confirmButtonText: "Xóa tất cả!",
       cancelButtonText: "Hủy",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -77,7 +77,7 @@ const Navbar = () => {
       text: "Bạn có chắc muốn xóa tài khoản? Hành động này không thể hoàn tác.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Vâng, xóa",
+      confirmButtonText: "Xóa",
       cancelButtonText: "Không",
       reverseButtons: true,
       confirmButtonColor: "#dc3545",
@@ -113,7 +113,7 @@ const Navbar = () => {
       text: "Bạn có chắc muốn đăng xuất?",
       icon: "question",
       showCancelButton: true,
-      confirmButtonText: "Vâng, đăng xuất",
+      confirmButtonText: "Đăng xuất",
       cancelButtonText: "Không",
       reverseButtons: true,
     });
