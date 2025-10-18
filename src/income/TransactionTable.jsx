@@ -22,6 +22,7 @@ const TransactionTable = ({
     <div className="row">
       <div className="col-12">
         <div
+          id="transactions-table"
           className="card border-0 shadow"
           data-aos="fade-up"
           data-aos-delay="400"

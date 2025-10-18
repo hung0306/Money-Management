@@ -138,6 +138,17 @@ const Summary = ({ formatCurrency, onAddTransaction }) => {
               onAddTransaction(newTransaction);
             }
             window.dispatchEvent(new Event("transactionsUpdated"));
+
+            // Scroll to the filters section
+            setTimeout(() => {
+              const filtersSection = document.querySelector("#filters-section");
+              if (filtersSection) {
+                filtersSection.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }, 300);
           } catch {}
         }
       );
