@@ -28,8 +28,7 @@ const Footer = () => {
   }
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [userLocation, setUserLocation] = useState("Đang lấy vị trí...");
-  const [locationError, setLocationError] = useState(null);
+  const [userLocation, setUserLocation] = useState("Việt Nam");
 
   useEffect(() => {
     AOS.init({
@@ -37,52 +36,6 @@ const Footer = () => {
       once: true,
       offset: 100,
     });
-
-    const getUserLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            const { latitude, longitude } = position.coords;
-            try {
-              const response = await fetch(
-                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10&addressdetails=1`,
-                {
-                  headers: {
-                    "User-Agent": "MoneyManagementTracker/1.0",
-                  },
-                }
-              );
-              const data = await response.json();
-              if (data.address) {
-                const city =
-                  data.address.city ||
-                  data.address.town ||
-                  data.address.village ||
-                  "";
-                const country = data.address.country || "";
-                setUserLocation(
-                  city && country ? `${city}, ${country}` : "Không rõ vị trí"
-                );
-              } else {
-                setUserLocation("Không rõ vị trí");
-              }
-            } catch (error) {
-              setLocationError("Không thể lấy thông tin vị trí");
-              setUserLocation("Không rõ vị trí");
-            }
-          },
-          (error) => {
-            setLocationError(error.message);
-            setUserLocation("Bị từ chối truy cập vị trí");
-          }
-        );
-      } else {
-        setLocationError("Trình duyệt không hỗ trợ định vị địa lý");
-        setUserLocation("Không thể xác định vị trí");
-      }
-    };
-
-    getUserLocation();
 
     const timer = setInterval(() => {
       const now = new Date();
