@@ -145,12 +145,12 @@ const HeroExpenses = () => {
                   <div className="d-flex align-items-center bg-danger bg-opacity-10 rounded-pill px-3 py-2">
                     <i className="bx bx-calendar text-danger me-2"></i>
                     <span className="text-danger fw-semibold">
-                      {currentTime.toLocaleDateString("id-ID", {
-                        weekday: "long",
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
+                      {(() => {
+                        const day = currentTime.getDate();
+                        const month = currentTime.getMonth() + 1;
+                        const year = currentTime.getFullYear();
+                        return `${day}/${month}/${year}`;
+                      })()}
                     </span>
                   </div>
                 </div>

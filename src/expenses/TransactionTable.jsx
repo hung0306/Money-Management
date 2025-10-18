@@ -56,11 +56,16 @@ const TransactionTable = ({ currentPage, setCurrentPage }) => {
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("id-ID", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    if (!dateString) return "Không có";
+
+    const date = new Date(dateString);
+    if (isNaN(date)) return "Không có";
+
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
   };
 
   const getTypeColor = (type) => {

@@ -139,14 +139,16 @@ const Table = () => {
   };
 
   const formatDate = (dateString) => {
+    if (!dateString) return "Không có";
+
     const date = new Date(dateString);
-    return dateString && !isNaN(date)
-      ? date.toLocaleDateString("id-ID", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })
-      : "Không có";
+    if (isNaN(date)) return "Không có";
+
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
   };
 
   const getTypeColor = (type) => {
